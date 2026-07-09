@@ -1,0 +1,91 @@
+/* ==========================================================================
+   RapidRefresh — Base element styles & shared primitives
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-regular);
+  color: var(--text-on-navy);
+  background: var(--surface-base);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings default to display face, tight */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight);
+  margin: 0;
+}
+
+p { margin: 0; text-wrap: pretty; }
+
+/* Links — always defined so editor-added links aren't browser-blue */
+a { color: var(--gold-400); text-decoration: none; transition: color var(--dur-fast) var(--ease-out); }
+a:hover { color: var(--gold-300); }
+
+img { display: block; max-width: 100%; }
+
+::selection { background: var(--gold-a40); color: var(--ivory); }
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* ---- Shared type helpers ------------------------------------------------ */
+.rr-display   { font-family: var(--font-display); font-weight: var(--fw-light); line-height: var(--lh-tight); letter-spacing: var(--ls-display); }
+.rr-heading   { font-family: var(--font-display); font-weight: var(--fw-regular); line-height: var(--lh-snug); letter-spacing: var(--ls-tight); }
+.rr-body      { font-family: var(--font-text); line-height: var(--lh-body); }
+
+/* Small-caps label — the brand's alternative to an eyebrow pill.
+   A gold droplet (logo motif) + wide-tracked caps. No background capsule,
+   no leading dash. */
+.rr-label {
+  font-family: var(--font-text);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--gold-500);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.rr-label::before {
+  content: "";
+  width: 11px;
+  height: 14px;
+  flex: 0 0 auto;
+  background: var(--gold-400);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 30'%3E%3Cpath d='M12 0C12 0 2 12 2 19a10 10 0 0 0 20 0C22 12 12 0 12 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 30'%3E%3Cpath d='M12 0C12 0 2 12 2 19a10 10 0 0 0 20 0C22 12 12 0 12 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* Layout container */
+.rr-container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Gold hairline divider */
+.rr-rule {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--gold-a40), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

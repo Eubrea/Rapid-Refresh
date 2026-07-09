@@ -1,0 +1,127 @@
+/* ==========================================================================
+   RapidRefresh site — global entry.
+   Design-system tokens (unchanged) + the responsive layer the desktop-authored
+   kit needs. No hard-coded brand values live here; everything references tokens.
+   ========================================================================== */
+@import url('./tokens/fonts.css');
+@import url('./tokens/colors.css');
+@import url('./tokens/typography.css');
+@import url('./tokens/spacing.css');
+@import url('./tokens/effects.css');
+@import url('./tokens/base.css');
+
+html, body { margin: 0; background: var(--navy-900); }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--navy-900); }
+::-webkit-scrollbar-thumb { background: var(--navy-300); border-radius: var(--radius-pill); }
+
+/* next/image inside our aspect-ratio Photo boxes */
+img { max-width: 100%; }
+
+/* ==========================================================================
+   Responsive layer.
+   The UI kit is authored at desktop width with fixed multi-column grids and
+   fixed pixel type on section headings. These breakpoints reflow those grids
+   for tablet and mobile. Class hooks (rr-*) are applied in the components.
+   ========================================================================== */
+
+/* ---- Generic responsive grid helpers -------------------------------------- */
+.rr-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.rr-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.rr-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.rr-grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+
+/* Two-column editorial splits (image + copy) */
+.rr-split { display: grid; gap: clamp(32px, 5vw, 72px); align-items: center; }
+
+@media (max-width: 1024px) {
+  .rr-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .rr-grid-6 { grid-template-columns: repeat(4, 1fr); }
+  .rr-split { grid-template-columns: 1fr !important; }
+  .rr-split-reverse > :first-child { order: 2; }
+}
+
+@media (max-width: 720px) {
+  .rr-grid-3 { grid-template-columns: 1fr; }
+  .rr-grid-2 { grid-template-columns: 1fr; }
+  .rr-grid-4 { grid-template-columns: 1fr; }
+  .rr-grid-6 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---- Home hero: keep the whole hero (incl. the four category cards) in view.
+   The hero fills the viewport and vertically centers its content, so on roomy
+   screens all four cards sit above the fold; on small screens spacing and the
+   cards compact so most of the hero (through the cards) stays visible. ------- */
+.rr-hero { min-height: 100svh; display: flex; align-items: center; }
+.rr-hero-inner { width: 100%; }
+.rr-hero-cards { gap: 20px; margin: 56px 0 -84px; }
+.rr-cat-media { height: 168px; }
+.rr-cat-body { padding: 20px 22px 24px; }
+
+@media (max-width: 1024px) {
+  .rr-hero-cards { gap: 16px; margin: 44px 0 -64px; }
+  .rr-cat-media { height: 150px; }
+}
+
+@media (max-width: 720px) {
+  .rr-hero-inner { padding-top: 72px !important; }
+  /* Two-by-two so all four images fit, overriding the 1-col grid default */
+  .rr-hero-cards { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; margin: 22px 0 -40px; }
+  .rr-cat-media { height: 108px; }
+  .rr-cat-body { padding: 12px 14px 14px; }
+  .rr-cat-body > div:first-child span { font-size: 1.05rem !important; }
+  .rr-hero-h1 { font-size: clamp(2rem, 8.2vw, 2.8rem) !important; margin-top: 12px !important; }
+  .rr-hero-sub { font-size: var(--fs-body) !important; margin-top: 10px !important; }
+  .rr-hero-cta { margin-top: 18px !important; gap: 10px !important; }
+  /* Compact the hero CTAs (they render as size-lg anchors) */
+  .rr-hero-cta a { padding: 13px 20px !important; font-size: 0.82rem !important; }
+}
+
+@media (max-width: 400px) {
+  .rr-cat-media { height: 94px; }
+  .rr-cat-body { padding: 11px 13px 13px; }
+  .rr-hero-h1 { font-size: 1.85rem !important; }
+}
+
+/* Very short viewports (landscape phones): let the hero scroll rather than
+   squeeze, but keep the top block compact. */
+@media (max-height: 620px) {
+  .rr-hero { min-height: 0; }
+}
+
+/* Section vertical rhythm already fluid via --section-y. */
+
+/* ---- Navigation ----------------------------------------------------------- */
+.rr-nav-desktop { display: flex; }
+.rr-nav-mobile { display: none; }
+
+@media (max-width: 1024px) {
+  .rr-nav-desktop { display: none; }
+  .rr-nav-mobile { display: flex; }
+}
+
+/* Footer grid collapses on small screens */
+.rr-footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 44px; }
+@media (max-width: 1024px) { .rr-footer-grid { grid-template-columns: 1fr 1fr; row-gap: 40px; } }
+@media (max-width: 560px) { .rr-footer-grid { grid-template-columns: 1fr; } }
+
+/* Booking layout + generic aside splits collapse */
+.rr-aside-split { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+@media (max-width: 900px) { .rr-aside-split { grid-template-columns: 1fr; } }
+
+/* Service area map + chips */
+.rr-map-split { display: grid; grid-template-columns: 1.35fr 0.65fr; gap: clamp(24px, 4vw, 44px); align-items: stretch; }
+@media (max-width: 900px) { .rr-map-split { grid-template-columns: 1fr; } }
+
+/* DripRow: stack price columns under the name on very small screens */
+@media (max-width: 560px) {
+  .rr-driprow { grid-template-columns: auto 1fr !important; row-gap: 16px; }
+  .rr-driprow > :last-child { grid-column: 1 / -1; justify-content: flex-start !important; }
+}
+
+/* Utility: visually-hidden but screen-reader accessible */
+.rr-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}

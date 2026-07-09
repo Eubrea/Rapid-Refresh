@@ -1,0 +1,79 @@
+/* ==========================================================================
+   RapidRefresh — Color tokens
+   Matte navy · antique gold · off-white ivory. Flat, no gloss.
+   ========================================================================== */
+:root {
+  /* --- Navy scale (matte, desaturated — deepest at 900) ------------------ */
+  --navy-900: #071233;   /* Midnight Navy — deepest, hero/footer base       */
+  --navy-800: #08153A;   /* Luxury Navy                                     */
+  --navy-700: #09163D;   /* Matte Navy — primary dark surface               */
+  --navy-600: #0A1945;   /* Brand base navy                                 */
+  --navy-500: #101F4E;   /* Raised surface on navy                          */
+  --navy-400: #1B263B;   /* Slate blue — cards / panels on navy             */
+  --navy-300: #263255;   /* Hairline borders on navy                        */
+  --navy-200: #38456B;   /* Muted strokes / disabled on navy                */
+
+  /* --- Gold scale (antique → champagne → foil) -------------------------- */
+  --gold-700: #7E6210;   /* Deep antique — pressed / shadow line            */
+  --gold-600: #A48111;   /* Antique Gold — primary button fill (spec)       */
+  --gold-500: #B8933A;   /* Aged gold                                       */
+  --gold-400: #C9A24B;   /* Champagne — accent text, hairlines, icons       */
+  --gold-300: #D9BC74;   /* Light champagne                                 */
+  --gold-200: #E8CE8A;   /* Foil highlight                                  */
+
+  /* Subtle gold button gradient (client spec: "subtle gradient") --------- */
+  --gold-fill: linear-gradient(180deg, #B58E1C 0%, #A48111 55%, #8C6D10 100%);        /* @kind color */
+  --gold-fill-hover: linear-gradient(180deg, #C29A28 0%, #B08A17 55%, #98770F 100%);  /* @kind color */
+
+  /* --- Ivory / neutral scale (off-white, never pure white) -------------- */
+  --ivory:      #F8F7F4;  /* Off-white — primary light bg & text on navy    */
+  --ivory-100:  #F1EFE9;  /* Warm paper — alternating light section         */
+  --ivory-200:  #E9E6DD;  /* Stone — dividers on light                      */
+  --ivory-300:  #D8D3C6;  /* Border on light                                */
+  --charcoal:   #1A1E28;  /* Deep charcoal — heavy text on light            */
+  --slate-ink:  #3A414F;  /* Secondary text on light                        */
+
+  /* --- Alpha helpers on navy -------------------------------------------- */
+  --ivory-a80: rgba(248, 247, 244, 0.80);
+  --ivory-a64: rgba(248, 247, 244, 0.64);
+  --ivory-a44: rgba(248, 247, 244, 0.44);
+  --ivory-a12: rgba(248, 247, 244, 0.12);
+  --ivory-a08: rgba(248, 247, 244, 0.08);
+  --gold-a40:  rgba(201, 162, 75, 0.40);
+  --gold-a16:  rgba(201, 162, 75, 0.16);
+
+  /* --- Feedback (kept muted / clinical) --------------------------------- */
+  --success: #3E8F6B;
+  --warning: #C08A2E;
+  --danger:  #B4463C;
+
+  /* ======================================================================
+     SEMANTIC ALIASES — reference these in components
+     ====================================================================== */
+  /* Surfaces */
+  --surface-base:      var(--navy-800);   /* default page (dark)            */
+  --surface-deep:      var(--navy-900);   /* hero / footer                  */
+  --surface-raised:    var(--navy-500);   /* raised block on navy           */
+  --surface-card:      var(--navy-400);   /* card on navy                   */
+  --surface-light:     var(--ivory);      /* light section                  */
+  --surface-light-alt: var(--ivory-100);  /* alternating light section      */
+
+  /* Text */
+  --text-on-navy:        var(--ivory);
+  --text-on-navy-muted:  var(--ivory-a64);
+  --text-on-navy-faint:  var(--ivory-a44);
+  --text-on-light:       var(--charcoal);
+  --text-on-light-muted: var(--slate-ink);
+  --text-gold:           var(--gold-400);
+
+  /* Lines */
+  --border-on-navy:   var(--navy-300);
+  --border-on-light:  var(--ivory-300);
+  --hairline-gold:    var(--gold-a40);
+
+  /* Interactive */
+  --accent:          var(--gold-600);
+  --accent-strong:   var(--gold-500);
+  --accent-bright:   var(--gold-400);
+  --focus-ring:      var(--gold-400);
+}

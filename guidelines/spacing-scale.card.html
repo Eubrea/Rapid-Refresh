@@ -1,0 +1,29 @@
+<!-- @dsCard group="Spacing" viewport="700x150" name="Spacing Scale" subtitle="4px base grid — the rhythm of the system" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--ivory); padding: 26px 32px; font-family: var(--font-text); }
+  .row { display: flex; align-items: flex-end; gap: 16px; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .bar { background: var(--gold-fill); border-radius: 3px 3px 0 0; width: 26px; }
+  .n { font-size: 11px; color: var(--slate-ink); font-variant-numeric: tabular-nums; }
+  .t { font-size: 10px; color: var(--charcoal); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="col"><div class="bar" style="height:8px"></div><div class="t">1</div><div class="n">4</div></div>
+    <div class="col"><div class="bar" style="height:16px"></div><div class="t">2</div><div class="n">8</div></div>
+    <div class="col"><div class="bar" style="height:24px"></div><div class="t">3</div><div class="n">12</div></div>
+    <div class="col"><div class="bar" style="height:32px"></div><div class="t">4</div><div class="n">16</div></div>
+    <div class="col"><div class="bar" style="height:48px"></div><div class="t">6</div><div class="n">24</div></div>
+    <div class="col"><div class="bar" style="height:64px"></div><div class="t">8</div><div class="n">32</div></div>
+    <div class="col"><div class="bar" style="height:80px"></div><div class="t">12</div><div class="n">48</div></div>
+    <div class="col"><div class="bar" style="height:96px"></div><div class="t">16</div><div class="n">64</div></div>
+    <div class="col"><div class="bar" style="height:110px"></div><div class="t">20</div><div class="n">80</div></div>
+  </div>
+</body>
+</html>

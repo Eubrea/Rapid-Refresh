@@ -1,0 +1,35 @@
+/* ==========================================================================
+   RapidRefresh — Radius, shadow & motion tokens
+   Matte finish: soft, low-spread shadows. No glow. Gold logo gets a soft
+   warm drop shadow (client spec). Subtle, restrained radii.
+   ========================================================================== */
+:root {
+  /* --- Corner radii ----------------------------------------------------- */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;   /* buttons / inputs */
+  --radius-lg:   18px;   /* cards */
+  --radius-xl:   28px;   /* large panels / images */
+  --radius-pill: 999px;
+
+  /* --- Shadows (matte, diffuse, low opacity — never glossy) ------------- */
+  --shadow-xs:   0 1px 2px rgba(7, 18, 51, 0.10);
+  --shadow-sm:   0 2px 8px rgba(7, 18, 51, 0.10);
+  --shadow-card: 0 18px 44px -24px rgba(7, 18, 51, 0.45);
+  --shadow-lift: 0 28px 64px -30px rgba(7, 18, 51, 0.55);
+  --shadow-media:0 40px 90px -40px rgba(7, 18, 51, 0.62);
+
+  /* Soft warm shadow behind the gold logo (NOT a glow) */
+  --shadow-logo: 0 14px 40px -12px rgba(126, 98, 16, 0.42);
+
+  /* Antique-gold button — matte depth, subtle */
+  --shadow-gold: 0 10px 26px -14px rgba(126, 98, 16, 0.55);
+
+  /* --- Motion (restrained, spa-calm — fades & gentle glides) ------------ */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);  /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);  /* @kind other */
+  --dur-fast:    160ms;  /* @kind other */
+  --dur-base:    260ms;  /* @kind other */
+  --dur-slow:    420ms;  /* @kind other */
+  --dur-reveal:  720ms;  /* @kind other */
+}

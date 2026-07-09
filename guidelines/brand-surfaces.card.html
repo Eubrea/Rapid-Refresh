@@ -1,0 +1,26 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="Surfaces, Radii & Shadow" subtitle="Matte cards, restrained corners, soft diffuse shadows — no glow" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--navy-900); padding: 30px 32px; font-family: var(--font-text); }
+  .row { display: flex; gap: 22px; align-items: flex-end; }
+  .card { background: var(--navy-400); border: 1px solid var(--navy-300); box-shadow: var(--shadow-card); padding: 18px; width: 150px; }
+  .lbl { font-size: 11px; color: var(--ivory-a64); letter-spacing: 0.04em; }
+  .val { font-size: 12px; color: var(--ivory); font-weight: 600; margin-top: 4px; }
+  .r-sm { border-radius: var(--radius-sm); } .r-md { border-radius: var(--radius-md); }
+  .r-lg { border-radius: var(--radius-lg); } .r-xl { border-radius: var(--radius-xl); }
+  .lift { box-shadow: var(--shadow-lift); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="card r-sm"><div class="lbl">radius-sm</div><div class="val">8px</div></div>
+    <div class="card r-md"><div class="lbl">radius-md · buttons</div><div class="val">12px</div></div>
+    <div class="card r-lg"><div class="lbl">radius-lg · cards</div><div class="val">18px</div></div>
+    <div class="card r-xl lift"><div class="lbl">radius-xl · media</div><div class="val">28px · lift shadow</div></div>
+  </div>
+</body>
+</html>

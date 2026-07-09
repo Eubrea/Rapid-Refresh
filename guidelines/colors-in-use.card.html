@@ -1,0 +1,41 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Color In Use" subtitle="How navy, gold and ivory pair — the matte luxury lock" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--navy-900); padding: 0; font-family: var(--font-text); }
+  .split { display: grid; grid-template-columns: 1fr 1fr; min-height: 180px; }
+  .panel { padding: 28px 32px; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+  .dark { background: var(--navy-800); }
+  .light { background: var(--ivory); }
+  .label { font-size: 12px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; display: flex; align-items: center; gap: 12px; }
+  .label::before { content: ""; width: 28px; height: 1px; }
+  .h { font-family: var(--font-display); font-weight: 300; letter-spacing: -0.02em; line-height: 1.05; }
+  .dark .label { color: var(--gold-400); } .dark .label::before { background: var(--gold-400); }
+  .dark .h { color: var(--ivory); font-size: 30px; }
+  .dark p { color: var(--ivory-a64); margin: 0; font-size: 14px; }
+  .light .label { color: var(--gold-600); } .light .label::before { background: var(--gold-600); }
+  .light .h { color: var(--charcoal); font-size: 30px; }
+  .light p { color: var(--slate-ink); margin: 0; font-size: 14px; }
+  .btn { align-self: flex-start; background: var(--gold-fill); color: var(--navy-900); font-weight: 600; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; padding: 12px 22px; border-radius: var(--radius-md); box-shadow: var(--shadow-gold); }
+</style>
+</head>
+<body>
+  <div class="split">
+    <div class="panel dark">
+      <span class="label">On Navy</span>
+      <div class="h">Delivered to you.</div>
+      <p>Ivory text, champagne accents.</p>
+      <span class="btn">Book Your Drip</span>
+    </div>
+    <div class="panel light">
+      <span class="label">On Ivory</span>
+      <div class="h">Rest. Restore.</div>
+      <p>Charcoal ink, antique-gold accents.</p>
+      <span class="btn">View the Menu</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!-- @dsCard group="Type" viewport="700x210" name="Label & Type Scale" subtitle="The droplet eyebrow (no pills, no dash) + the working scale" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--navy-800); padding: 28px 32px; }
+  .eyebrow { font-family: var(--font-text); font-size: 12px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-500); display: inline-flex; align-items: center; gap: 10px; }
+  .eyebrow::before { content: ""; width: 11px; height: 14px; flex: 0 0 auto; background: var(--gold-400); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 30'%3E%3Cpath d='M12 0C12 0 2 12 2 19a10 10 0 0 0 20 0C22 12 12 0 12 0Z'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 30'%3E%3Cpath d='M12 0C12 0 2 12 2 19a10 10 0 0 0 20 0C22 12 12 0 12 0Z'/%3E%3C/svg%3E") center / contain no-repeat; }
+  .note { font-family: var(--font-text); font-size: 12px; color: var(--ivory-a44); margin: 6px 0 22px; }
+  .scale { display: flex; flex-direction: column; gap: 9px; }
+  .scale div { color: var(--ivory); font-family: var(--font-display); font-weight: 300; letter-spacing: -0.01em; line-height: 1; display: flex; align-items: baseline; gap: 16px; }
+  .scale span { font-family: var(--font-text); font-size: 11px; color: var(--ivory-a44); font-weight: 500; letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+  <span class="eyebrow">Why RapidRefresh</span>
+  <div class="note">The brand eyebrow — a gold droplet (logo motif) + wide-tracked small caps. No pill, no dash.</div>
+  <div class="scale">
+    <div style="font-size:52px">Hero <span>84 / clamp</span></div>
+    <div style="font-size:34px">Display <span>44–60</span></div>
+    <div style="font-size:24px">Heading <span>24–32</span></div>
+    <div style="font-family:var(--font-text);font-size:16px;font-weight:400">Body copy <span>16 · Hanken</span></div>
+  </div>
+</body>
+</html>
