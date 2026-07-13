@@ -31,7 +31,7 @@ const explore: { key: RouteKey; label: string }[] = [
   { key: 'pricing', label: 'Pricing' },
   { key: 'memberships', label: 'Memberships' },
   { key: 'giftcards', label: 'Gift Cards' },
-  { key: 'corporate', label: 'Corporate & Events' },
+  { key: 'corporate', label: 'Event & Group' },
   { key: 'faq', label: 'FAQ' },
   { key: 'about', label: 'About the Nurse' },
 ];

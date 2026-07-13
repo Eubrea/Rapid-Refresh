@@ -30,6 +30,7 @@ function CatCard({ tint, img, name, blurb }: { tint: string; img: string; name: 
         boxShadow: 'var(--shadow-lift)',
         display: 'flex',
         flexDirection: 'column',
+        height: '100%',
         transform: h ? 'translateY(-6px)' : 'none',
         transition: 'transform var(--dur-base) var(--ease-out)',
       }}
@@ -126,21 +127,24 @@ export function HomeScreen() {
   ];
   const marquee: [IconName, string][] = [
     ['user-round-check', 'RN-Led Concierge Care'],
+    ['stethoscope', 'Physician-Directed Care'],
+    ['shield-check', 'Sterile, Hospital-Grade Supplies'],
     ['clock', 'Same-Day Appointments'],
     ['lock', 'HIPAA-Conscious'],
     ['shield', 'Fully Insured'],
     ['flask-conical', 'Medical-Grade'],
   ];
   const why: [IconName, string, string, string][] = [
-    ['stethoscope', 'RN-Led, 22+ Years', 'Every visit is led by a registered nurse with over two decades of acute-care experience.', P + 'why-rn.webp'],
-    ['car-front', 'We Come To You', 'Concierge mobile service to your home, office, gym, or hotel, on your schedule.', P + 'why-mobile.webp'],
-    ['flask-conical', 'Medical-Grade', 'High-quality vitamins and medications, dosed and administered to clinical standards.', P + 'why-grade.webp'],
-    ['sliders-horizontal', 'Built Around You', 'Drips customized to your goals: recovery, energy, immunity, beauty, or hydration.', P + 'why-custom.webp'],
+    ['stethoscope', 'RN-Led, 22+ Years of Acute-Care Experience', 'Every treatment is delivered by an experienced Registered Nurse committed to safe, evidence-based care.', P + 'why-rn.webp'],
+    ['car-front', 'Concierge Service', 'Luxury IV therapy delivered to your home, office, hotel, or event.', P + 'why-mobile.webp'],
+    ['syringe', 'Physician-Directed Protocols', 'Premium ingredients administered using physician-approved protocols and hospital-quality standards.', P + 'why-grade.webp'],
+    ['sparkles', 'Personalized Wellness', 'Every IV therapy treatment is customized to support your unique health and wellness goals.', P + 'why-custom.webp'],
   ];
   const steps: [IconName, string, string, string][] = [
-    ['smartphone', 'Request', 'Choose your drip, location, and time online or by phone.', P + 'step-request.webp'],
-    ['clipboard-list', 'Intake & Consent', 'Complete a quick, HIPAA-conscious health intake.', P + 'step-intake.webp'],
-    ['car-front', 'We Arrive', 'Your RN arrives on schedule and delivers your drip in comfort.', P + 'step-arrive.webp'],
+    ['smartphone', 'Book Your Visit', 'Choose your drip, location, and time online or by phone.', P + 'step-request.webp'],
+    ['clipboard-list', 'Personalized Health Assessment', 'Complete a quick health assessment so your RN can tailor the treatment to you.', P + 'step-intake.webp'],
+    ['car-front', 'Relax While We Come to You', 'Your RN arrives on schedule and delivers your drip in comfort, wherever you are.', P + 'step-arrive.webp'],
+    ['sparkles', 'Feel Your Best', 'Rehydrated, replenished, and recharged, ready to take on whatever comes next.', P + 'serve-athome.webp'],
   ];
   const drips: [IconName, string, string, string, number, string][] = [
     ['droplet', 'var(--ivory-100)', 'Essential Hydration', 'Hydration & Electrolytes', 169, P + 'drip-hydration.webp'],
@@ -247,7 +251,7 @@ export function HomeScreen() {
           <Reveal>
             <SectionLabel tone="onLight">Why RapidRefresh</SectionLabel>
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: 'var(--fs-d1)', color: 'var(--charcoal)', letterSpacing: '-0.02em', margin: '18px 0 0', maxWidth: '18ch' }}>
-              Hospital-level care, concierge-level comfort.
+              Hospital-Level Expertise. Luxury Concierge Care.
             </h2>
           </Reveal>
           <div className="rr-grid-4" style={{ marginTop: 52 }}>
@@ -306,10 +310,10 @@ export function HomeScreen() {
           <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <SectionLabel tone="onLight" align="center">How It Works</SectionLabel>
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: 'var(--fs-d1)', color: 'var(--charcoal)', letterSpacing: '-0.02em', margin: '18px 0 0' }}>
-              Three steps to feeling your best.
+              Luxury IV therapy in four simple steps.
             </h2>
           </div>
-          <div className="rr-grid-3" style={{ gap: 26, marginTop: 56 }}>
+          <div className="rr-grid-4" style={{ gap: 26, marginTop: 56 }}>
             {steps.map(([ic, t, d, img], i) => (
               <Reveal key={t} delay={i * 90}>
                 <div style={{ background: 'var(--ivory)', borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: 'var(--shadow-sm)', height: '100%' }}>
@@ -318,7 +322,7 @@ export function HomeScreen() {
                   </div>
                   <div style={{ padding: '26px 28px 30px' }}>
                     <span style={{ fontFamily: 'var(--font-text)', fontSize: '12px', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold-600)' }}>
-                      Step {['One', 'Two', 'Three'][i]}
+                      Step {['One', 'Two', 'Three', 'Four'][i]}
                     </span>
                     <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: '1.4rem', color: 'var(--charcoal)', margin: '10px 0 8px' }}>{t}</h3>
                     <p style={{ color: 'var(--slate-ink)', fontSize: '14.5px', lineHeight: 1.6, margin: 0 }}>{d}</p>
@@ -545,7 +549,7 @@ export function HomeScreen() {
       <section style={{ background: 'var(--ivory)', padding: '0 var(--gutter) var(--section-y)' }}>
         <div style={{ maxWidth: 'var(--container)', margin: '0 auto' }}>
           <div style={{ background: 'var(--navy-800)', borderRadius: 'var(--radius-xl)', padding: 'clamp(48px,6vw,84px) clamp(28px,5vw,72px)', textAlign: 'center', boxShadow: 'var(--shadow-lift)' }}>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: 'var(--fs-d1)', color: 'var(--ivory)', letterSpacing: '-0.02em', margin: 0 }}>Ready to feel your best?</h2>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: 'var(--fs-d1)', color: 'var(--ivory)', letterSpacing: '-0.02em', margin: 0 }}>Book your concierge IV experience.</h2>
             <p style={{ color: 'var(--ivory-a64)', fontSize: 'var(--fs-lg)', margin: '18px auto 0', maxWidth: '44ch' }}>
               Book a concierge IV session, or join the Wellness Club for member pricing all year.
             </p>

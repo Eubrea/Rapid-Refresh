@@ -42,7 +42,7 @@ export const NAV_LINKS: { key: RouteKey; label: string }[] = [
   { key: 'memberships', label: 'Memberships' },
   { key: 'pricing', label: 'Pricing' },
   { key: 'service', label: 'Service Area' },
-  { key: 'corporate', label: 'Corporate' },
+  { key: 'corporate', label: 'Event & Group' },
   { key: 'about', label: 'About' },
 ];
 

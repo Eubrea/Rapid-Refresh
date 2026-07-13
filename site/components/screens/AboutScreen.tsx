@@ -9,7 +9,9 @@ export function AboutScreen() {
   const badges: [IconName, string][] = [
     ['award', '22+ Years of Acute-Care Experience'],
     ['user-round-check', 'RN-Led Concierge Care'],
+    ['stethoscope', 'Physician-Directed Care'],
     ['shield-check', 'Fully Insured Mobile Practice'],
+    ['shield', 'Sterile, Hospital-Grade Supplies'],
     ['flask-conical', 'Evidence-Based Wellness'],
     ['lock', 'HIPAA-Compliant Care'],
     ['clock', 'Same-Day Mobile Appointments'],
