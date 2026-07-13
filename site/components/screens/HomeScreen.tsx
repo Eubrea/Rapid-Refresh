@@ -153,10 +153,10 @@ export function HomeScreen() {
     ['sunrise', 'var(--ivory-200)', 'Morning After Rescue™', 'Hangover Recovery', 249, P + 'drip-rescue.webp'],
   ];
   const serve = ['Athletes & High Performers', 'Corporate Professionals', 'Post-Travel Recovery', 'Event & Bridal Parties', 'Everyday Wellness'];
-  const testimonials: [string, string, string][] = [
-    ['The nurse was professional and the whole experience felt genuinely luxurious. I booked before a half-marathon and recovered in record time.', 'Danielle R.', 'Katy, TX'],
-    ['On-time, spotless, and so calming. It is the only way I will do IV therapy now, right in my living room.', 'Marcus T.', 'The Woodlands, TX'],
-    ['We booked the whole bridal party. Everyone glowed for the photos. Absolutely worth it.', 'Priya S.', 'Sugar Land, TX'],
+  const testimonials: [string, string, string, string][] = [
+    ['The nurse was professional and the whole experience felt genuinely luxurious. I booked before a half-marathon and recovered in record time.', 'Danielle R.', 'Katy, TX', P + 'testimonial-danielle.webp'],
+    ['On-time, spotless, and so calming. It is the only way I will do IV therapy now, right in my living room.', 'Marcus T.', 'The Woodlands, TX', P + 'testimonial-marcus.webp'],
+    ['We booked the whole bridal party. Everyone glowed for the photos. Absolutely worth it.', 'Priya S.', 'Sugar Land, TX', P + 'testimonial-priya.webp'],
   ];
 
   return (
@@ -170,8 +170,8 @@ export function HomeScreen() {
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(7,18,51,0.72) 0%, rgba(7,18,51,0.34) 42%, rgba(7,18,51,1) 88%)' }} />
         </div>
         <div className="rr-hero-inner" style={{ position: 'relative', maxWidth: 'var(--container)', margin: '0 auto', padding: 'clamp(40px,8vw,104px) var(--gutter) 0', textAlign: 'center' }}>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <SectionLabel align="center">RN-Led Mobile IV · Houston</SectionLabel>
+          <div className="rr-hero-eyebrow" style={{ display: 'flex', justifyContent: 'center' }}>
+            <SectionLabel align="center">RN-Led Mobile IV · TX, MO</SectionLabel>
           </div>
           <h1
             className="rr-hero-h1"
@@ -491,7 +491,7 @@ export function HomeScreen() {
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: 'var(--fs-d1)', color: 'var(--charcoal)', letterSpacing: '-0.02em', margin: '18px 0 0' }}>What clients say</h2>
           </div>
           <div className="rr-grid-3" style={{ marginTop: 52 }}>
-            {testimonials.map(([q, n, loc], i) => (
+            {testimonials.map(([q, n, loc, photo], i) => (
               <Reveal key={n} delay={i * 80}>
                 <div style={{ background: 'var(--ivory)', borderRadius: 'var(--radius-xl)', padding: '32px 30px', boxShadow: 'var(--shadow-sm)', height: '100%', display: 'flex', flexDirection: 'column', gap: 18 }}>
                   <div style={{ display: 'flex', gap: 3, color: 'var(--gold-500)' }}>
@@ -501,8 +501,8 @@ export function HomeScreen() {
                   </div>
                   <p style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: '1.2rem', lineHeight: 1.45, color: 'var(--charcoal)', margin: 0, flex: 1 }}>&ldquo;{q}&rdquo;</p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, borderTop: '1px solid var(--ivory-200)', paddingTop: 18 }}>
-                    <span style={{ width: 42, height: 42, borderRadius: '50%', background: 'var(--gold-a16)', color: 'var(--gold-600)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontWeight: 500 }}>
-                      {n[0]}
+                    <span style={{ width: 42, height: 42, flex: '0 0 auto', borderRadius: '50%', overflow: 'hidden', position: 'relative', background: 'var(--gold-a16)' }}>
+                      <Image src={photo} alt={n} fill sizes="42px" style={{ objectFit: 'cover' }} />
                     </span>
                     <span>
                       <span style={{ display: 'block', fontWeight: 600, fontSize: '14px', color: 'var(--charcoal)' }}>{n}</span>

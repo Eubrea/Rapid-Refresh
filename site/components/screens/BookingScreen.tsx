@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import Image from 'next/image';
 import { Button } from '../ui/Button';
 import { Icon, type IconName } from '../ui/Icon';
@@ -9,13 +9,55 @@ import { Input } from '../ui/Input';
 import { Select } from '../ui/Select';
 import { Checkbox } from '../ui/Checkbox';
 import { Card } from '../ui/Card';
-import { JANEAPP, PHONE_DISPLAY, PHONE_TEL } from '../../lib/site';
+import { JANEAPP, PHONE_DISPLAY, PHONE_TEL, BOOKING_EMAIL, WEB3FORMS_ACCESS_KEY } from '../../lib/site';
 
 const pill = { borderRadius: 'var(--radius-pill)' };
 
 export function BookingScreen() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const step = 1;
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const field = (key: string) => (data.get(key) as string) || '';
+
+    data.append('access_key', WEB3FORMS_ACCESS_KEY);
+    data.append('subject', `New booking request — ${field('name') || 'website'}`);
+    data.append('from_name', 'RapidRefresh Booking Form');
+
+    setSubmitting(true);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: data,
+      });
+      const result = await res.json();
+      if (!result.success) throw new Error(result.message || 'Submission failed');
+      setSubmitted(true);
+    } catch {
+      // Web3Forms free tier caps at 250 submissions/month. If the API call fails for
+      // any reason (cap hit, outage, network error), fall back to the visitor's own
+      // email client so the request still reaches us, just not as a formatted form.
+      const body = [
+        `Name: ${field('name')}`,
+        `Phone: ${field('phone')}`,
+        `Email: ${field('email')}`,
+        `Drip: ${field('drip')}`,
+        `Location: ${field('location')}`,
+        `Preferred Date: ${field('date')}`,
+        `Preferred Time: ${field('time')}`,
+        `Address: ${field('address')}`,
+      ].join('\n');
+      window.location.href = `mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent(`Booking Request — ${field('name') || 'New Client'}`)}&body=${encodeURIComponent(body)}`;
+      setSubmitted(true);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   const steps: [IconName, string, string][] = [
     ['calendar-check', 'Request', 'Choose your drip, location, and preferred time.'],
@@ -96,10 +138,7 @@ export function BookingScreen() {
                 </div>
               ) : (
                 <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSubmitted(true);
-                  }}
+                  onSubmit={handleSubmit}
                   style={{ display: 'flex', flexDirection: 'column', gap: 20 }}
                 >
                   <div className="rr-grid-2" style={{ gap: 20 }}>
@@ -110,21 +149,22 @@ export function BookingScreen() {
                   <div className="rr-grid-2" style={{ gap: 20 }}>
                     <Select
                       label="Select Your Drip"
+                      name="drip"
                       required
                       options={['Essential Hydration', 'Energy Reset', 'RapidRefresh Defense', "Myers' Cocktail", 'Game Day Drip™', 'Glass Skin Drip', 'Morning After Rescue™', 'NAD+ Renewal']}
                     />
-                    <Select label="Service Location" required options={['Home', 'Office', 'Gym', 'Hotel']} />
+                    <Select label="Service Location" name="location" required options={['Home', 'Office', 'Gym', 'Hotel']} />
                   </div>
                   <div className="rr-grid-2" style={{ gap: 20 }}>
                     <Input label="Preferred Date" name="date" type="date" required />
-                    <Select label="Preferred Time" required options={['Morning (8–11 AM)', 'Midday (11 AM–2 PM)', 'Afternoon (2–5 PM)', 'Evening (5–8 PM)']} />
+                    <Select label="Preferred Time" name="time" required options={['Morning (8–11 AM)', 'Midday (11 AM–2 PM)', 'Afternoon (2–5 PM)', 'Evening (5–8 PM)']} />
                   </div>
                   <Input label="Service Address" name="address" placeholder="Street, City, ZIP, Greater Houston" icon={<Icon name="map-pin" size={17} color="currentColor" />} />
                   <div style={{ height: 1, background: 'var(--navy-300)', margin: '4px 0' }} />
-                  <Checkbox required label="I consent to treatment and confirm my intake information is accurate. (HIPAA-conscious)" />
-                  <Checkbox label="Send me member-only offers and wellness tips." />
-                  <Button variant="primary" size="lg" fullWidth type="submit" style={pill} iconRight={<Icon name="arrow-right" size={18} color="currentColor" />}>
-                    Request Appointment
+                  <Checkbox required name="consent" label="I consent to treatment and confirm my intake information is accurate. (HIPAA-conscious)" />
+                  <Checkbox name="marketing" label="Send me member-only offers and wellness tips." />
+                  <Button variant="primary" size="lg" fullWidth type="submit" disabled={submitting} style={pill} iconRight={<Icon name="arrow-right" size={18} color="currentColor" />}>
+                    {submitting ? 'Sending…' : 'Request Appointment'}
                   </Button>
                   <p style={{ color: 'var(--ivory-a44)', fontSize: '13px', textAlign: 'center', margin: 0 }}>Powered by JaneApp · Secure online booking &amp; payments</p>
                 </form>

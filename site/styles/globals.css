@@ -54,14 +54,31 @@ img { max-width: 100%; }
    screens all four cards sit above the fold; on small screens spacing and the
    cards compact so most of the hero (through the cards) stays visible. ------- */
 .rr-hero { min-height: 100svh; display: flex; align-items: center; }
-.rr-hero-inner { width: 100%; }
-.rr-hero-cards { gap: 20px; margin: 56px 0 -84px; }
-.rr-cat-media { height: 168px; }
-.rr-cat-body { padding: 20px 22px 24px; }
+/* Desktop/tablet: the 74px sticky header sits in normal flow above the hero, so
+   a full 100svh hero overflows the viewport bottom by the header's height and
+   pushes the four cards below the fold. Subtract the header so the centered
+   block fits exactly in the visible area. (Mobile keeps its own tuned rules.) */
+@media (min-width: 721px) {
+  .rr-hero { min-height: calc(100svh - 74px); }
+}
+/* Trim the top padding + inter-block gaps so the centered hero block (through
+   all four cards) fits within one viewport height on desktop and iPad. The
+   margins beat the components' inline styles, hence !important. */
+.rr-hero-inner { width: 100%; padding-top: clamp(16px, 2.2vw, 36px) !important; }
+.rr-hero-h1 { font-size: clamp(2.5rem, 1.5rem + 4vw, 4.5rem) !important; }
+.rr-hero-h1 { margin-top: 12px !important; }
+.rr-hero-sub { margin-top: 12px !important; }
+.rr-hero-cta { margin-top: 18px !important; }
+.rr-hero-cards { gap: 20px; margin: 16px 0 -84px; }
+.rr-cat-media { height: 116px; }
+.rr-cat-body { padding: 14px 20px 16px; }
 
 @media (max-width: 1024px) {
-  .rr-hero-cards { gap: 16px; margin: 44px 0 -64px; }
-  .rr-cat-media { height: 150px; }
+  /* iPad: the four cards wrap to a 2×2 grid (two rows), so compact media +
+     spacing a touch more to keep both rows inside the viewport. */
+  .rr-hero-cards { gap: 16px; margin: 14px 0 -64px; }
+  .rr-cat-media { height: 108px; }
+  .rr-cat-body { padding: 13px 18px 15px; }
 }
 
 @media (max-width: 720px) {
@@ -75,8 +92,12 @@ img { max-width: 100%; }
   .rr-cat-body { padding: 11px 13px 13px; }
   .rr-cat-body > div:first-child span { font-size: 1rem !important; }
   .rr-cat-body p { font-size: 12.5px !important; }
+  /* Shrink the eyebrow + sub so they stop competing with the H1 and CTAs.
+     Also scale down the droplet mark and gap so the whole pill reads small. */
+  .rr-hero-eyebrow span { font-size: 8px !important; letter-spacing: 0.1em !important; gap: 5px !important; }
+  .rr-hero-eyebrow svg { width: 7px !important; height: 9px !important; }
   .rr-hero-h1 { font-size: clamp(1.55rem, 6.6vw, 2.15rem) !important; line-height: 1.05 !important; margin-top: 8px !important; }
-  .rr-hero-sub { font-size: 13.5px !important; line-height: 1.5 !important; margin-top: 8px !important; }
+  .rr-hero-sub { font-size: 12px !important; line-height: 1.45 !important; margin-top: 6px !important; }
   .rr-hero-cta { margin-top: 12px !important; gap: 10px !important; }
   /* Compact the hero CTAs (they render as size-lg anchors) */
   .rr-hero-cta a { padding: 12px 20px !important; font-size: 0.82rem !important; }
@@ -117,6 +138,14 @@ img { max-width: 100%; }
 /* Service area map + chips */
 .rr-map-split { display: grid; grid-template-columns: 1.35fr 0.65fr; gap: clamp(24px, 4vw, 44px); align-items: stretch; }
 @media (max-width: 900px) { .rr-map-split { grid-template-columns: 1fr; } }
+
+/* Grid items default to min-width:auto, so content (long text, badges) can force
+   a track wider than its column and push cards past the viewport edge on mobile.
+   Force every grid track to actually shrink to its column. */
+.rr-grid-2 > *, .rr-grid-3 > *, .rr-grid-4 > *, .rr-grid-6 > *,
+.rr-aside-split > *, .rr-split > *, .rr-map-split > *, .rr-footer-grid > * {
+  min-width: 0;
+}
 
 /* DripRow: stack price columns under the name on very small screens */
 @media (max-width: 560px) {

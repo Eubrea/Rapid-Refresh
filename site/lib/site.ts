@@ -10,9 +10,11 @@ export const INSTAGRAM_HANDLE = '@rapidrefreshivtherapy';
 export const PHONE_DISPLAY = '(713) 851-7590';
 export const PHONE_TEL = '+17138517590';
 
-/* Single general inbox carried over from the design source. The three
-   dedicated business addresses are pending client confirmation. */
 export const EMAIL = 'hello@rapidrefreshiv.com';
+export const BOOKING_EMAIL = 'bookings@rapidrefreshiv.com';
+
+/* Web3Forms — free-tier form backend (public key, safe for client code). */
+export const WEB3FORMS_ACCESS_KEY = '55f541ff-2f50-452d-b95d-93f440fb4419';
 
 export const BUSINESS_NAME = 'RapidRefresh Mobile IV & Wellness';
 export const CITY = 'Houston, TX';
