@@ -86,7 +86,7 @@ export function Select({
             const val = typeof o === 'string' ? o : o.value;
             const lab = typeof o === 'string' ? o : o.label;
             return (
-              <option key={val} value={val} style={{ color: '#1A1E28' }}>
+              <option key={val} value={val} style={{ color: '#1A1E28', background: '#FFFFFF' }}>
                 {lab}
               </option>
             );

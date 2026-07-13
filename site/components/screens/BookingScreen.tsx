@@ -7,6 +7,7 @@ import { Icon, type IconName } from '../ui/Icon';
 import { SectionLabel } from '../ui/SectionLabel';
 import { Input } from '../ui/Input';
 import { Select } from '../ui/Select';
+import { Textarea } from '../ui/Textarea';
 import { Checkbox } from '../ui/Checkbox';
 import { Card } from '../ui/Card';
 import { JANEAPP, PHONE_DISPLAY, PHONE_TEL, BOOKING_EMAIL, WEB3FORMS_ACCESS_KEY } from '../../lib/site';
@@ -51,6 +52,7 @@ export function BookingScreen() {
         `Preferred Date: ${field('date')}`,
         `Preferred Time: ${field('time')}`,
         `Address: ${field('address')}`,
+        `Message: ${field('message')}`,
       ].join('\n');
       window.location.href = `mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent(`Booking Request — ${field('name') || 'New Client'}`)}&body=${encodeURIComponent(body)}`;
       setSubmitted(true);
@@ -160,6 +162,7 @@ export function BookingScreen() {
                     <Select label="Preferred Time" name="time" required options={['Morning (8–11 AM)', 'Midday (11 AM–2 PM)', 'Afternoon (2–5 PM)', 'Evening (5–8 PM)']} />
                   </div>
                   <Input label="Service Address" name="address" placeholder="Street, City, ZIP, Greater Houston" icon={<Icon name="map-pin" size={17} color="currentColor" />} />
+                  <Textarea label="Message" name="message" placeholder="Anything else we should know? Allergies, accessibility needs, special requests…" rows={4} />
                   <div style={{ height: 1, background: 'var(--navy-300)', margin: '4px 0' }} />
                   <Checkbox required name="consent" label="I consent to treatment and confirm my intake information is accurate. (HIPAA-conscious)" />
                   <Checkbox name="marketing" label="Send me member-only offers and wellness tips." />
