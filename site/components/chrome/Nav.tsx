@@ -17,6 +17,53 @@ function keyFromPath(pathname: string): RouteKey | null {
 }
 
 /**
+ * IvBagMenu — the mobile menu button rendered as an IV bag. It starts full on
+ * load and drains as the page scrolls (`fill` 1 → 0), reaching empty at the
+ * footer, with a slow drip at the port while any solution remains.
+ * Interior of the bag spans y=5..25 (height 20); the liquid fills from the
+ * bottom up so its top edge = 5 + (1 - fill) * 20.
+ */
+function IvBagMenu({ fill }: { fill: number }) {
+  const f = Math.min(1, Math.max(0, fill));
+  // Interior spans y=5..25 (height 20); the clipPath rounds the corners, so the
+  // liquid can fill the whole interior at f=1 and empty completely at f=0.
+  const top = 5 + (1 - f) * 20;
+  const height = 25 - top;
+  return (
+    <svg width="24" height="30" viewBox="0 0 28 34" fill="none" aria-hidden="true" style={{ display: 'block' }}>
+      <defs>
+        <linearGradient id="rr-iv-fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="var(--gold-300)" />
+          <stop offset="1" stopColor="var(--gold-500)" />
+        </linearGradient>
+        <clipPath id="rr-iv-clip">
+          <rect x="8" y="5" width="12" height="20" rx="4.5" />
+        </clipPath>
+      </defs>
+      {/* hanger loop */}
+      <path d="M11.5 4.5 a2.5 2.5 0 0 1 5 0" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      {/* liquid, clipped to the bag interior */}
+      {height > 0.4 && (
+        <g clipPath="url(#rr-iv-clip)">
+          <rect x="8" y={top} width="12" height={height} fill="url(#rr-iv-fill)" />
+          <rect x="8" y={top} width="12" height="1.4" fill="var(--gold-200)" opacity="0.85" />
+        </g>
+      )}
+      {/* bag outline + dosage ticks */}
+      <rect x="8" y="5" width="12" height="20" rx="4.5" stroke="currentColor" strokeWidth="1.6" />
+      <line x1="17.5" y1="10" x2="19" y2="10" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+      <line x1="17.5" y1="15" x2="19" y2="15" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+      <line x1="17.5" y1="20" x2="19" y2="20" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+      {/* port + drip chamber */}
+      <line x1="14" y1="25" x2="14" y2="28.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      {f > 0.02 && (
+        <circle className="rr-iv-drop" cx="14" cy="29" r="1.3" fill="var(--gold-400)" />
+      )}
+    </svg>
+  );
+}
+
+/**
  * Nav — "The Infusion Line". The nav IS an IV line: links are ports mounted on
  * gold tubing, a droplet travels down the line to the active page (chasing hover
  * on the way), the tubing fills behind it, and a slow drip falls from the
@@ -28,6 +75,7 @@ export function Nav() {
   const overHero = pathname === ROUTES.home;
 
   const [scrolled, setScrolled] = useState(false);
+  const [drain, setDrain] = useState(0); // 0 at top of page → 1 at the footer
   const [hovered, setHovered] = useState<RouteKey | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [ports, setPorts] = useState<Record<string, number>>({});
@@ -35,10 +83,21 @@ export function Nav() {
   const nodeRefs = useRef<Record<string, HTMLElement | null>>({});
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const d = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+      // Only re-render on a meaningful change so scrolling stays cheap.
+      setDrain((prev) => (Math.abs(prev - d) >= 0.004 ? d : prev));
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, []);
 
   // Close the mobile menu on route change.
@@ -92,7 +151,10 @@ export function Nav() {
         transition: 'background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out)',
       }}
     >
-      <style>{`@keyframes rr-nav-drip{0%{opacity:0;transform:translateY(0) scale(.5)}14%{opacity:.95}70%{opacity:.3}100%{opacity:0;transform:translateY(15px) scale(1)}}`}</style>
+      <style>{`@keyframes rr-nav-drip{0%{opacity:0;transform:translateY(0) scale(.5)}14%{opacity:.95}70%{opacity:.3}100%{opacity:0;transform:translateY(15px) scale(1)}}
+        @keyframes rr-iv-drip{0%,55%{opacity:0;transform:translateY(0)}70%{opacity:1}100%{opacity:0;transform:translateY(4px)}}
+        .rr-iv-drop{animation:rr-iv-drip 2.6s ease-in infinite;transform-box:fill-box;transform-origin:center}
+        @media (prefers-reduced-motion: reduce){.rr-iv-drop{animation:none}}`}</style>
       <div
         style={{
           maxWidth: 'var(--container-wide)',
@@ -258,7 +320,7 @@ export function Nav() {
             cursor: 'pointer',
           }}
         >
-          <Icon name={menuOpen ? 'x' : 'menu'} size={22} color="currentColor" />
+          {menuOpen ? <Icon name="x" size={22} color="currentColor" /> : <IvBagMenu fill={1 - drain} />}
         </button>
       </div>
 

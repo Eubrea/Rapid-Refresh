@@ -65,23 +65,27 @@ img { max-width: 100%; }
 }
 
 @media (max-width: 720px) {
-  .rr-hero-inner { padding-top: 72px !important; }
+  /* The sticky header already reserves its own height in flow, so the hero only
+     needs a small breathing gap here — not another header's worth of padding.
+     Reclaiming it keeps the CTAs and (>=1/3 of) the second card row in view. */
+  .rr-hero-inner { padding-top: 16px !important; }
   /* Two-by-two so all four images fit, overriding the 1-col grid default */
-  .rr-hero-cards { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; margin: 22px 0 -40px; }
-  .rr-cat-media { height: 108px; }
-  .rr-cat-body { padding: 12px 14px 14px; }
-  .rr-cat-body > div:first-child span { font-size: 1.05rem !important; }
-  .rr-hero-h1 { font-size: clamp(2rem, 8.2vw, 2.8rem) !important; margin-top: 12px !important; }
-  .rr-hero-sub { font-size: var(--fs-body) !important; margin-top: 10px !important; }
-  .rr-hero-cta { margin-top: 18px !important; gap: 10px !important; }
+  .rr-hero-cards { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; margin: 14px 0 -40px; }
+  .rr-cat-media { height: 92px; }
+  .rr-cat-body { padding: 11px 13px 13px; }
+  .rr-cat-body > div:first-child span { font-size: 1rem !important; }
+  .rr-cat-body p { font-size: 12.5px !important; }
+  .rr-hero-h1 { font-size: clamp(1.55rem, 6.6vw, 2.15rem) !important; line-height: 1.05 !important; margin-top: 8px !important; }
+  .rr-hero-sub { font-size: 13.5px !important; line-height: 1.5 !important; margin-top: 8px !important; }
+  .rr-hero-cta { margin-top: 12px !important; gap: 10px !important; }
   /* Compact the hero CTAs (they render as size-lg anchors) */
-  .rr-hero-cta a { padding: 13px 20px !important; font-size: 0.82rem !important; }
+  .rr-hero-cta a { padding: 12px 20px !important; font-size: 0.82rem !important; }
 }
 
 @media (max-width: 400px) {
-  .rr-cat-media { height: 94px; }
-  .rr-cat-body { padding: 11px 13px 13px; }
-  .rr-hero-h1 { font-size: 1.85rem !important; }
+  .rr-cat-media { height: 84px; }
+  .rr-cat-body { padding: 10px 12px 12px; }
+  .rr-hero-h1 { font-size: 1.5rem !important; }
 }
 
 /* Very short viewports (landscape phones): let the hero scroll rather than
