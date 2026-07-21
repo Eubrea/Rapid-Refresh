@@ -23,7 +23,7 @@ export function AboutScreen() {
         <div className="rr-split" style={{ maxWidth: 'var(--container)', margin: '0 auto', gridTemplateColumns: '0.9fr 1.1fr' }}>
           <Reveal>
             <div style={{ position: 'relative', paddingBottom: 56, paddingRight: 56 }}>
-              <Photo src="/photos/founder-about.webp" alt="Rahab Njuguna, RN" ratio="3 / 4" />
+              <Photo src="/photos/founder-rah-new.webp" alt="Rahab Njuguna, RN" ratio="3 / 4" />
               <div style={{ position: 'absolute', right: 0, bottom: 0, width: '46%' }}>
                 <Photo src="/photos/founder-2.webp" alt="Rahab at the RapidRefresh studio" ratio="3 / 4" radius="var(--radius-lg)" style={{ border: '6px solid var(--navy-900)' }} />
               </div>

@@ -440,7 +440,7 @@ export function HomeScreen() {
       <section style={{ background: 'var(--ivory)', padding: 'var(--section-y) var(--gutter)' }}>
         <div className="rr-split" style={{ maxWidth: 'var(--container)', margin: '0 auto', gridTemplateColumns: '0.85fr 1.15fr' }}>
           <Reveal>
-            <Photo src={P + 'founder-waist-up.webp'} alt="Rahab Njuguna, RN" ratio="3 / 4" radius="var(--radius-xl)" />
+            <Photo src={P + 'founder-rah-new.webp'} alt="Rahab Njuguna, RN" ratio="3 / 4" radius="var(--radius-xl)" />
           </Reveal>
           <div>
             <SectionLabel tone="onLight">Meet Your Nurse</SectionLabel>
