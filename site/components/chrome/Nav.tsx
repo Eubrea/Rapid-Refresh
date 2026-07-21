@@ -156,6 +156,7 @@ export function Nav() {
         .rr-iv-drop{animation:rr-iv-drip 2.6s ease-in infinite;transform-box:fill-box;transform-origin:center}
         @media (prefers-reduced-motion: reduce){.rr-iv-drop{animation:none}}`}</style>
       <div
+        className="rr-nav-inner"
         style={{
           maxWidth: 'var(--container-wide)',
           margin: '0 auto',
@@ -166,9 +167,10 @@ export function Nav() {
           gap: 30,
         }}
       >
-        <Link href={ROUTES.home} aria-label="RapidRefresh home" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <Link href={ROUTES.home} aria-label="RapidRefresh home" className="rr-nav-brand" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <Logo size={40} showWordmark={false} />
           <span
+            className="rr-nav-wordmark"
             style={{
               fontFamily: 'var(--font-display)',
               fontWeight: 500,
@@ -180,6 +182,27 @@ export function Nav() {
             RapidRefresh
           </span>
         </Link>
+
+        {/* ---- phone (mobile, centered between brand and hamburger) ---- */}
+        <a
+          href={`tel:${PHONE_TEL}`}
+          className="rr-nav-mobile rr-nav-phone"
+          aria-label={`Call ${PHONE_DISPLAY}`}
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 6,
+            color: 'var(--ivory)',
+            fontFamily: 'var(--font-text)',
+            fontSize: '13.5px',
+            fontWeight: 600,
+            letterSpacing: '0.01em',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          <Icon name="phone" size={14} color="var(--gold-400)" /> {PHONE_DISPLAY}
+        </a>
 
         {/* ---- the infusion line (desktop) ---- */}
         <nav

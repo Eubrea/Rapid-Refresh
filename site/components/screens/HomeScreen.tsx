@@ -170,6 +170,7 @@ export function HomeScreen() {
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(7,18,51,0.72) 0%, rgba(7,18,51,0.34) 42%, rgba(7,18,51,1) 88%)' }} />
         </div>
         <div className="rr-hero-inner" style={{ position: 'relative', maxWidth: 'var(--container)', margin: '0 auto', padding: 'clamp(40px,8vw,104px) var(--gutter) 0', textAlign: 'center' }}>
+          <div className="rr-hero-copy">
           <div className="rr-hero-eyebrow" style={{ display: 'flex', justifyContent: 'center' }}>
             <SectionLabel align="center">RN-Led Mobile IV · TX, MO</SectionLabel>
           </div>
@@ -198,6 +199,7 @@ export function HomeScreen() {
             <Button as="a" href={ROUTES.menu} variant="secondary" size="lg" style={pill}>
               View the Drip Menu
             </Button>
+          </div>
           </div>
           {/* category cards straddle hero → ivory */}
           <div className="rr-grid-4 rr-hero-cards" style={{ position: 'relative', zIndex: 3 }}>
